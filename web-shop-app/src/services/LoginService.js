@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginService = (LoginUserJson) =>{
     const firebaseConfig = {
@@ -17,9 +17,20 @@ const LoginService = (LoginUserJson) =>{
       
       
       const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
+      const auth = getAuth(app);
+signInWithEmailAndPassword(auth, LoginUserJson.email, LoginUserJson.password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    console.log(user)
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage)
 
-      const UserRef = db.collection('UserCollection');
+  });
 
       
 }

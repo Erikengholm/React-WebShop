@@ -22,10 +22,10 @@ const RegistrateService = (SignInJson) =>{
       
       
       // Initialize Firebase Authentication and get a reference to the service
-      const auth = getAuth();
+      const auth = getAuth(app);
       createUserWithEmailAndPassword(auth, SignInJson.email, SignInJson.password)
         .then((userCredential) => {
-          let user = app.auth().currentUser
+          let user = userCredential.user
           let uid = user.uid
           let yourdata = { UserName: SignInJson.UserName, Adress: SignInJson.Adress}
           app.database().ref('users').child(uid).set(yourdata)
