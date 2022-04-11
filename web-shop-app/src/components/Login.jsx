@@ -11,7 +11,7 @@ const Login = () =>{
   const [redirect, setredirect] = useState(false)
 
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { setValue, handleSubmit, formState: { errors } } = useForm();
     
     const onSubmit = (data) => {
       LoginService(data).then((res) =>{
@@ -31,10 +31,10 @@ const Login = () =>{
   else{
 
     return(<form onSubmit={handleSubmit(onSubmit)}>
-      <input {...register("email", { required: "This is required." })} placeholder="Email" />
+      <input {...setValue("email", { required: "This is required." })} placeholder="Email" />
       {errors.email && <p>{errors.email.message}</p>}
 
-      <input type="password" {...register("password", {
+      <input type="password" {...setValue("password", {
         minLength: {
           value: 3,
           message: 'Length must be 3 or more',
