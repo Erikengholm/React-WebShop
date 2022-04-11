@@ -1,6 +1,7 @@
 import {useState,useEffect} from "react"
 import FetchAllProductData from "../services/FetchAllProductData"
 import ProductCard from "./ProductCard";
+import "../styles/Products.css"
 
 const Home = () =>{
 

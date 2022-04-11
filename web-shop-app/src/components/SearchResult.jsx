@@ -12,6 +12,8 @@ const SearchResult = (props) => {
 
   useEffect(() => {
     FetchAllProductData().then((json) => {
+      console.log( location.state.searchVal)
+
       let newArray = GetProductBySearchTitel(json, location.state.searchVal);
       setResultList(newArray);
       SetDataLoaded(true);
@@ -29,7 +31,7 @@ const SearchResult = (props) => {
     );
   } else {
     return (
-      <div>
+      <div className="ProductContainer">
         {List}
       </div>
     );

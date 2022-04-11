@@ -1,10 +1,10 @@
-import Navigation from "../components/navigation/Navigation"
+import Header from "../components/navigation/Header"
 import Main from "../components/navigation/Main"
 import { BrowserRouter } from "react-router-dom"
 const WebShopContainer = () =>{
     
     return(<BrowserRouter>
-     <Navigation/>
+     <Header/>
     <Main />
     </BrowserRouter>
     )

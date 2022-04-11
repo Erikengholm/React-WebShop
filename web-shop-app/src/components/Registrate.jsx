@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import RegistrateService from "../services/RegistrateService"
 import { useState } from "react";
-import {Redirect} from 'react-router-dom';
+import {Navigate} from 'react-router-dom';
 import { useContext } from "react";
 import { UserContext } from '../App';
 
@@ -14,6 +14,7 @@ const Registrate = () => {
   const onSubmit = (data) => {
     RegistrateService(data).then((json) =>{
       setUser({
+        Email:data.email,
         UserName:json.UserName,
         Login:true,
     });
@@ -24,8 +25,8 @@ const Registrate = () => {
   };
 
   if(Redirect){
-    return (<Redirect to={""}/>)
-}
+    return (<Navigate replace to="/" />)
+  }
 else{
   return (<form onSubmit={handleSubmit(onSubmit)}>
   <input {...register("email", { required: "This is required." })} placeholder="Email" />

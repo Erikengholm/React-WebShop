@@ -1,7 +1,7 @@
 const GetProductBySearchTitel = (array,SearchString) =>{
 
     array.forEach( Auc => {
-       let Simvalue = similarity(Auc.Titel,SearchString)
+       let Simvalue = similarity(Auc.title,SearchString)
        Auc.sim =Simvalue;
    })
 

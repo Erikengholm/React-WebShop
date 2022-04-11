@@ -1,6 +1,6 @@
 import {useRef,useState} from 'react';
 import { NavLink } from 'react-router-dom';
-import "../styles/Styles.css"
+//import "../../styles/"
 const SearchNav = () =>  {
 
     const [InputValue, SetInputValue] = useState("");

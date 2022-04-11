@@ -3,7 +3,7 @@ import Home from "../Home"
 import Login from "../Login"
 import Details from "../Details"
 import Registrate from "../Registrate"
-
+import SearchResult from "../SearchResult";
 
 
 
@@ -17,6 +17,8 @@ const Main = () =>{
             <Route exact path="/Login" element={<Login/>} />
             <Route exact path="/Registrate" element={<Registrate/>} />
             <Route exact path="/Details" element={<Details/>} />
+            <Route exact path="/Search" element={<SearchResult/>} />
+
 
 
     </Routes>)

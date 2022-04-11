@@ -1,25 +1,40 @@
 import { useForm } from "react-hook-form";
 import LoginService from "../services/LoginService"
-
+import { useState } from "react";
+import {Navigate} from 'react-router-dom';
+import { useContext } from "react";
+import { UserContext } from '../App';
 
 const Login = () =>{
+  const { setUser } = useContext(UserContext);
+
+  const [redirect, setredirect] = useState(false)
 
 
-    const { Login, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
     
-    const onSubmit = () =>{
-      LoginService();
+    const onSubmit = (data) => {
+      LoginService(data).then((res) =>{
+        setUser({
+          Email:data.email,
+          UserName:res.UserName,
+          Login:true,
+        });
+        setredirect(true);
+
+      });
     }
 
+    if(redirect){
+      return (<Navigate replace to="/" />)
+  }
+  else{
 
-
-    return(<div className="login-wrapper">
-    <h1>Please Log In</h1>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input {...Login("email", { required: "This is required." })} placeholder="Email" />
+    return(<form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("email", { required: "This is required." })} placeholder="Email" />
       {errors.email && <p>{errors.email.message}</p>}
 
-      <input type="password" {...Login("password", {
+      <input type="password" {...register("password", {
         minLength: {
           value: 3,
           message: 'Length must be 3 or more',
@@ -28,9 +43,8 @@ const Login = () =>{
       {errors.password && <p>{errors.password.message}</p>}
 
       <button type="Submit">Login</button>
-    </form>
-  </div>)
-
+    </form>)
+  }
 }
 
 export default Login;

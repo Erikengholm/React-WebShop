@@ -1,0 +1,15 @@
+.ProductContainer{
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+}
+.ProductCard{
+    margin: 4px;
+    flex: 0 1 calc(20% - 8px); /* <-- adjusting for margin */
+    text-align-last: center;
+}
+.RemoveUnderLine{
+    text-decoration: none;
+    color:black
+}
