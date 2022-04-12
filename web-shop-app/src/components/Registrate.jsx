@@ -13,7 +13,9 @@ const Registrate = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
     RegistrateService(data).then((json) =>{
+      console.log(json)
       setUser({
+        UserID:json.UserID,
         Email:data.email,
         UserName:json.UserName,
         Login:true,

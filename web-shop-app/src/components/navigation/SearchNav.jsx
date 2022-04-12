@@ -1,12 +1,12 @@
 import {useRef,useState} from 'react';
 import { NavLink } from 'react-router-dom';
-//import "../../styles/"
+import "../../styles/Search.css"
 const SearchNav = () =>  {
 
     const [InputValue, SetInputValue] = useState("");
 
     const searchVal = useRef();
-    return (<div>
+    return (<div className='SearchDiv'>
 
         <input type="text" ref={searchVal} onChange={() =>{
             SetInputValue(searchVal.current.value)

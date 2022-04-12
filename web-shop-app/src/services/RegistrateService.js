@@ -16,9 +16,11 @@ const RegistrateService = async (SignInJson) => {
         let user = userCredential.user;
         let uid = user.uid;
         let yourdata = {
+          UserID:uid,
           UserName: SignInJson.UserName,
           Adress: SignInJson.Adress,
         };
+        console.log(yourdata)
         const db = getDatabase();
         set(ref(db, "users/" + uid), { yourdata })
           .then((data) => {

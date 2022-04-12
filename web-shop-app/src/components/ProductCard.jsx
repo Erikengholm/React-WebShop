@@ -1,11 +1,14 @@
 import { NavLink } from "react-router-dom"
 import "../styles/Products.css"
-import {CheckIfCookieExist} from "../services/CookieModifier"
+import { useContext } from "react";
+import { ShoppingListContext } from '../App';
 
 const ProductCard = ({Product}) =>{
+  const { ShoppingList } = useContext(ShoppingListContext);
 
     const AddToShopingCart = (prop) =>{
-      CheckIfCookieExist(prop)
+      ShoppingList.push(prop)
+      console.log(ShoppingList)
     }
 
     return(<div key={Product.id} className="ProductCard">
@@ -16,11 +19,8 @@ const ProductCard = ({Product}) =>{
             <p>{Product.title}</p>
          
             <img height="150px" width="150px" src={Product.image} alt={Product.title} />
-            <p>{Product.price}</p>
+            <p>{Product.price} KR</p>
             </NavLink>
-            <button onClick={() =>{
-              AddToShopingCart(Product);
-            }}>Köp</button>
     </div>)
 
 }

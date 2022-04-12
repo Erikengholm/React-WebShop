@@ -11,11 +11,12 @@ const Login = () =>{
   const [redirect, setredirect] = useState(false)
 
 
-  const { setValue, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
     
     const onSubmit = (data) => {
       LoginService(data).then((res) =>{
         setUser({
+          UserID:res.UserID,
           Email:data.email,
           UserName:res.UserName,
           Login:true,
@@ -31,10 +32,10 @@ const Login = () =>{
   else{
 
     return(<form onSubmit={handleSubmit(onSubmit)}>
-      <input {...setValue("email", { required: "This is required." })} placeholder="Email" />
+      <input {...register("email", { required: "This is required." })} placeholder="Email" />
       {errors.email && <p>{errors.email.message}</p>}
 
-      <input type="password" {...setValue("password", {
+      <input type="password" {...register("password", {
         minLength: {
           value: 3,
           message: 'Length must be 3 or more',
