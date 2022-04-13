@@ -19,7 +19,10 @@ li a,span {
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover,span:hover {
+li a:hover {
+  background-color: #111;
+}
+li span:hover {
   background-color: #111;
 }
 #UserNameSpan:hover{
@@ -27,4 +30,7 @@ li a:hover,span:hover {
 }
 #SearchBar{
     float: right;
+}
+#StopShoping{
+  cursor: pointer;
 }

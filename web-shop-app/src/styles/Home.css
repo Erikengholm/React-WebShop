@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Big+Shoulders+Display&display=swap');
+
+h1 {
+    transition: transform 2s;
+    font-size: 60px;
+    color: white;
+    font-family: 'Big Shoulders Display', cursive;
+}
+
+.card:hover>p {
+    opacity: 1;
+    transform: scale(1.5);
+    top: 80%;
+
+}
+
+img:hover .card {}
+
+img,
+#parent {
+    cursor: pointer;
+
+}
+
+.card:hover>img {
+    opacity: 1;
+    transform: scale(1.4);
+
+}
+
+.card header {
+    position: absolute;
+
+    top: 120%;
+    left: 0%;
+    padding: 1px;
+    border-radius: 25px;
+    width: 450px;
+    height: 90px;
+    transition: all .5s;
+    opacity: 0;
+}
+
+.card:hover>header {
+
+    opacity: 1;
+    width: 450px;
+    height: 90px;
+    transform: translateY(-120px);
+}
+
+.ProductNavLink{
+    width: 65%;
+    align-self: center;
+}
+
+.card {
+
+    transition: transform .7s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 500px;
+    margin: auto;
+    text-align: center;
+    font-family: arial;
+    background: white;
+    width: 210px;
+    height: 375px;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    margin: 4px;
+    flex: 0 1 calc(25% - 8px); /* <-- adjusting for margin */
+    text-align-last: center;
+}
+
+.card:hover {
+
+    transform: scale(1.08)
+}
+
+.centeri {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
+span {
+
+    position: relative;
+}

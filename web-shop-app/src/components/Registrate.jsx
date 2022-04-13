@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import RegistrateService from "../services/RegistrateService"
 import { useState } from "react";
-import {Navigate} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useContext } from "react";
 import { UserContext } from '../App';
+import "../styles/RegiLoginForm.css"
 
 const Registrate = () => {
   const { setUser } = useContext(UserContext);
@@ -12,44 +13,91 @@ const Registrate = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = (data) => {
-    RegistrateService(data).then((json) =>{
+    RegistrateService(data).then((json) => {
       console.log(json)
       setUser({
-        UserID:json.UserID,
-        Email:data.email,
-        UserName:json.UserName,
-        Login:true,
-    });
+        UserID: json.UserID,
+        Email: data.email,
+        UserName: json.UserName,
+        Login: true,
+      });
       setRedirect(true);
-    }).catch(er =>{
+    }).catch(er => {
       console.log(er)
     });
   };
 
-  if(Redirect){
+  if (Redirect) {
     return (<Navigate replace to="/" />)
   }
-else{
-  return (<form onSubmit={handleSubmit(onSubmit)}>
-  <input {...register("email", { required: "This is required." })} placeholder="Email" />
-  {errors.email && <p>{errors.email.message}</p>}
+  else {
+    return (
+      <div className="FormDiv">
 
-  <input {...register("UserName")} placeholder="User name" />
-  <input type="password" {...register("password", {
-    minLength: {
-      value: 3,
-      message: 'Length must be 3 or more',
-    }, required: "Password is required"
-  })} placeholder="Password" />
-  {errors.password && <p>{errors.password.message}</p>}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div class="row">
+            <div class="col-40">
+              <label for="email">Email </label>
+            </div>
+            <div class="col-60">
+              <input {...register("email", { required: "This is required." })} placeholder="Email" />
+            </div>
+          </div>
+          <div class="row ErrorRow">
 
-  <input {...register("Adress", { required: "This is required." })} placeholder="Adresse" />
-  {errors.Adress && <p>{errors.Adress.message}</p>}
+            {errors.email && <p className="ErrorMessage">{errors.email.message}</p>}
 
+          </div>
+          <div class="row">
+            <div class="col-40">
+              <label for="UserName">Användarnamn </label>
+            </div>
+            <div class="col-60">
+              <input {...register("UserName")} placeholder="User name" />
+            </div>
+          </div>
+          <div class="row ErrorRow">
 
-  <button type="Submit">Create acount</button>
-</form>)
-}  
+            {errors.UserName && <p>{errors.UserName.message}</p>}
+          </div>
+          <div class="row">
+            <div class="col-40">
+              <label for="password">Password </label>
+            </div>
+            <div class="col-60">
+              <input type="password" {...register("password", {
+                minLength: {
+                  value: 6,
+                  message: 'Length must be 6 or more',
+                }, required: "Password is required"
+              })} placeholder="Password" />
+
+            </div>
+          </div>
+          <div class="row ErrorRow">
+
+            {errors.password && <p className="ErrorMessage">{errors.password.message}</p>}
+          </div>
+
+          <div class="row">
+            <div class="col-40">
+              <label for="Adress">Adresse </label>
+            </div>
+            <div class="col-60">
+              <input {...register("Adress", { required: "This is required." })} placeholder="Adresse" />
+            </div>
+          </div>
+          <div class="row ErrorRow">
+
+            {errors.Adress && <p>{errors.Adress.message}</p>}
+          </div>
+          <div class="row">
+            <input type="submit" value="Registrera" />
+          </div>
+        </form>
+      </div>
+    )
+  }
 }
 
 export default Registrate;
