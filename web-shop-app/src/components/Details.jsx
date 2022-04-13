@@ -6,16 +6,15 @@ import { ShoppingListContext } from '../App';
 const Details = () => {
     let location = useLocation();
     const { user } = useContext(UserContext);
-    const { ShoppingList } = useContext(ShoppingListContext);
+    const { ShoppingList,setShoppingList } = useContext(ShoppingListContext);
 
     const prop = location.state.ProductDetails
 
     const AddToCart = (prop) =>{
-        ShoppingList.push(prop)
-        console.log(ShoppingList)
+        setShoppingList([...ShoppingList, prop]) //simple value //another array
     }
 
-    return (<main class="container">
+    return (<main className="container">
 
         <div class="left-column">
             <img src={prop.image} alt={prop.title} />
@@ -32,7 +31,10 @@ const Details = () => {
             <div class="product-price">
                 <span>{prop.price} KR</span>
                 <button className='cart-btn' disabled={!user.Login} onClick={() => {
-               AddToCart(prop) }}>Köp</button>  </div>
+               AddToCart(prop) }}>Köp</button> 
+            </div>
+            {!user.Login && <p> Du kan endast köpa om du är inloggad</p>} 
+
         </div>
     </main>)
 

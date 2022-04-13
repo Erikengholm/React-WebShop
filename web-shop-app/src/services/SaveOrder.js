@@ -4,8 +4,9 @@ import { getDatabase, ref, set } from "firebase/database";
 
 const SaveOrder = (id,array) => {
 
-  var Orders = [];
   const app = initializeApp(firebaseConfig);
+
+  var Orders = [];
 
   const uniqueArray = array.filter((value, index) => {
     const _value = JSON.stringify(value);
@@ -33,7 +34,7 @@ const SaveOrder = (id,array) => {
   });
   let date = new Date()
 console.log(Orders);
-  let dateString = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()+"-"+date.getHours()+"-"+date.getMinutes()
+  let dateString = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getHours()+":"+date.getMinutes()
     const db = getDatabase();
         set(ref(db, "Orders/" + id+"/"+dateString), { Orders })
           .then((data) => {

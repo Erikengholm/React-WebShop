@@ -5,14 +5,26 @@ import SaveOrder from "../../services/SaveOrder"
 import { ShoppingListContext } from '../../App';
 import "../../styles/Navigation.css"
 import SearchNav from "./SearchNav"
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
     const { user } = useContext(UserContext);
     const { ShoppingList,setShoppingList } = useContext(ShoppingListContext);
+    const navigate = useNavigate();
 
     const EndShoping = () =>{
-        SaveOrder(user.UserID,ShoppingList)
-        setShoppingList([])
+        
+        if(ShoppingList.length ===0){
+            alert("Du har inte köpt något >:(")
+        }
+        else{
+            alert("Tack och välkommen tillbaka :)")
+            SaveOrder(user.UserID,ShoppingList)
+            setShoppingList([])
+            navigate('/')
+        }
+        
+
     }
 
     return (<nav>
